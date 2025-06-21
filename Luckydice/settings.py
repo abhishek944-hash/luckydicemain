@@ -92,16 +92,7 @@ WSGI_APPLICATION = "Luckydicegame.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "lucky_dice",
-        "USER": "root",
-        "PASSWORD": "Qualde",
-        "HOST": "localhost",  # Or an IP Address that your DB is hosted on
-        "PORT": "3306",  # Default MySQL port
-    }
-}
+
 
 
 # Password validation
@@ -153,23 +144,9 @@ LOGIN_REDIRECT_URL = "/profile/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# API_KEY = "test_bd4e91fe6cf86520e280ca95430"
-# AUTH_TOKEN = "test_e3eddc2ab520fc368cf285aafeb"
-
-# SALT = "c3e578ddb2604a1c8fea595038ef7d32"
-
-API_KEY = "2b9ffc2f21ebc09da0d345eecebe6ebe"
-AUTH_TOKEN = "fb7fd5807eac8a5ba3710f6050eb833f"
-
 SALT = "4290b1b3cabd423b836cabe5044fce00"
 
 # Razorpay
-
-# RAZORPAY_KEY_ID = "rzp_test_AigyCc6s5GehQ0"
-# RAZORPAY_KEY_SECRET = "W5qsSkr2pZAcBoTpdoTKMlfd"
-
-RAZORPAY_KEY_ID = "rzp_live_9QigGqAq5kvkc8"
-RAZORPAY_KEY_SECRET = "DBfJtshcBOytIX8vNdRMcLhH"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
