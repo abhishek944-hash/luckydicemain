@@ -23,7 +23,7 @@ EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = EMAIL_PORT
 
-ADMIN_EMAIL = "qualdedigital.for.add2012@gmail.com"
+ADMIN_EMAIL = "test@gmail.com"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -150,7 +150,7 @@ SALT = "4290b1b3cabd423b836cabe5044fce00"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-DEFAULT_FROM_EMAIL = "Qualdedigital.for.add2012@gmail.com"
+DEFAULT_FROM_EMAIL = "test@gmail.com"
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
