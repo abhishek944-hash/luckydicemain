@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Withdrawal</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/withdrawal.css' %}"> -->
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 50%;
+        margin: 50px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+
+    .payment-details-section {
+        display: none;
+        /* Initially hide the payment details sections */
+    }
+
+    .form-group input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .form-group label {
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2>Request Withdrawal</h2>
+        <form method="POST" action="{% url 'request_withdrawal' %}" id="withdrawalForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" name="amount" id="amount" min="1" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="payment_method">Payment Method</label>
+                <select name="payment_method" id="payment_method" required>
+                    <option value="" disabled selected>Select Payment Method</option>
+                    <option value="bank_transfer">Bank Transfer(UNDER PROGRESS...USE UPI)</option>
+                    <option value="upi">UPI</option>
+                </select>
+            </div>
+
+            <!-- Bank Details Section -->
+            <div id="bank-details" class="payment-details-section">
+                <div class="form-group">
+                    <label for="bank_name">UserName</label>
+                    <input type="text" name="bank_name" id="bank_name">
+                </div>
+                <div class="form-group">
+                    <label for="bank_name">Bank Name</label>
+                    <input type="text" name="bank_name" id="bank_name">
+                </div>
+                <div class="form-group">
+                    <label for="account_number">Account Number</label>
+                    <input type="text" name="account_number" id="account_number">
+                </div>
+                <div class="form-group">
+                    <label for="ifsc_code">IFSC Code</label>
+                    <input type="text" name="ifsc_code" id="ifsc_code">
+                </div>
+            </div>
+
+            <!-- UPI ID Section -->
+            <div id="upi-details" class="payment-details-section">
+                <div class="form-group">
+                    <label for="upi_id">Phone Number Registered in UPI</label>
+                    <input type="text" name="upi_id" id="upi_id">
+                </div>
+            </div>
+
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+    <script>
+
+        document.getElementById('payment_method').addEventListener('change', function () {
+            var paymentMethod = this.value;
+
+            var bankDetailsSection = document.getElementById('bank-details');
+            var upiDetailsSection = document.getElementById('upi-details');
+
+            // Hide all sections initially
+            bankDetailsSection.style.display = 'none';
+            upiDetailsSection.style.display = 'none';
+
+            // Show the relevant section based on the selected payment method
+            if (paymentMethod === 'bank_transfer') {
+                bankDetailsSection.style.display = 'block';
+            } else if (paymentMethod === 'upi') {
+                upiDetailsSection.style.display = 'block';
+            }
+        });
+
+        // Form validation to ensure necessary fields are filled
+        document.getElementById('withdrawalForm').addEventListener('submit', function (event) {
+            var paymentMethod = document.getElementById('payment_method').value;
+            var amount = parseFloat(document.getElementById('amount').value);
+
+            if (amount < 1000) {
+                alert('The amount must be at least 1000.');
+                event.preventDefault();
+            }
+
+            if (paymentMethod === 'bank_transfer') {
+                var bankName = document.getElementById('bank_name').value;
+                var accountNumber = document.getElementById('account_number').value;
+                var ifscCode = document.getElementById('ifsc_code').value;
+
+                if (!bankName || !accountNumber || !ifscCode) {
+                    alert('Please fill in all the bank details.');
+                    event.preventDefault();
+                }
+            } else if (paymentMethod === 'upi') {
+                var upiId = document.getElementById('upi_id').value;
+
+                if (!upiId) {
+                    alert('Please enter your UPI ID.');
+                    event.preventDefault();
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

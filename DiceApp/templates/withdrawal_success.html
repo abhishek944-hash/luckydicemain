@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Success</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #e0f7fa;
+            /* Light cyan background */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            max-width: 600px;
+            /* Increased width */
+            width: 90%;
+            /* Responsive width */
+        }
+
+        h1 {
+            color: #4caf50;
+            margin-top: 0;
+            font-size: 2.5em;
+            /* Increased font size */
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        a {
+            display: inline-block;
+            font-size: 1.2em;
+            text-decoration: none;
+            color: #ffffff;
+            background: #007bff;
+            padding: 15px 30px;
+            /* Larger padding */
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Withdrawal Request Submitted Successfully</h1>
+        <p>Your withdrawal request has been submitted and is pending approval.</p>
+        <p>amount will be credited within 48 hours</p>
+        <a href="{% url 'home' %}">Go back to Home</a>
+    </div>
+</body>
+
+</html>

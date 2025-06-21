@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Authentication</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @keyframes fadeInOut {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            20%,
+            80% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+
+            0%,
+            20%,
+            40%,
+            60%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #ffffff00;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            animation: bounceIn 1s ease-out;
+        }
+
+        h3 {
+            text-align: center;
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .forgot-password a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #0056b3;
+        }
+
+        .message-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 300px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ced4da;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            display: none;
+            z-index: 1000;
+            animation: fadeInOut 5s ease-in-out;
+        }
+
+        .message-container.active {
+            display: block;
+        }
+
+        .message-container .message {
+            margin-bottom: 10px;
+            color: #f81818;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Welcome to the Sign-In Page</h3>
+
+        <form action="/signin" method="post">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="pass1">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Enter your password" required>
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        <div class="forgot-password">
+            <a href="{% url 'forgot_password' %}">Forgot Password?</a>
+        </div>
+    </div>
+
+    <!-- Hidden div to store messages -->
+    <div class="message-container" id="message-container">
+        {% for message in messages %}
+        <div class="message alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var messageContainer = document.getElementById('message-container');
+            if (messageContainer.children.length > 0) {
+                messageContainer.classList.add('active');
+                setTimeout(function () {
+                    messageContainer.classList.remove('active');
+                }, 5000); // 5 seconds timeout
+            }
+        });
+    </script>
+
+</body>
+
+</html>
