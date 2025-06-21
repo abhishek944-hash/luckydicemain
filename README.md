@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+#Luckydice project
+This my first real world project.
+=======
 # 🎲 Luckydice - Django Web Game
 
 Luckydice is a web-based multiplayer dice game built using Django, HTML/CSS, JavaScript, and integrated with secure payment gateways. The application offers real-time gameplay, transaction tracking, and a smooth user experience — all designed for entertainment and engagement.
@@ -66,3 +70,4 @@ pip install -r requirements.txt
 
 # Run the server
 python manage.py runserver
+>>>>>>> main
