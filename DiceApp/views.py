@@ -841,7 +841,7 @@ def initiate_razorpay_payment(request):
 
         # Initialize Razorpay client with API key and secret key
         client = razorpay.Client(
-            auth=(settings.rzp_live_9QigGqAq5kvkc8, settings.DBfJtshcBOytIX8vNdRMcLhH)
+            auth=(settings............, settings.)
         )
 
         try:
