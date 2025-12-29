@@ -877,7 +877,7 @@ def razorpay_callback(request):
 
     # Fetch Razorpay order details using the order ID
     client = razorpay.Client(
-        auth=(settings.rzp_live_9QigGqAq5kvkc8, settings.DBfJtshcBOytIX8vNdRMcLhH)
+        auth=(settings., settings.)
     )
     try:
         order = client.order.fetch(order_id)
